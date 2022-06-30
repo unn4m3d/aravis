@@ -978,7 +978,7 @@ arv_gv_device_finalize (GObject *object)
 		heartbeat_data = gv_device->priv->heartbeat_data;
 
 		heartbeat_data->cancel = TRUE;
-		g_thread_join (gv_device->priv->heartbeat_thread);
+		// FIXME: g_thread_join (gv_device->priv->heartbeat_thread);
 		g_free (heartbeat_data);
 
 		gv_device->priv->heartbeat_data = NULL;

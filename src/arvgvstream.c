@@ -691,7 +691,7 @@ arv_gv_stream_thread (void *data)
 
 	_flush_frames (thread_data);
 
-	if (thread_data->callback != NULL)
+	if (thread_data->callback != NULL && thread_data->user_data != NULL)
 		thread_data->callback (thread_data->user_data, ARV_STREAM_CALLBACK_TYPE_EXIT, NULL);
 
 	g_free (packet);
@@ -921,7 +921,7 @@ arv_gv_stream_finalize (GObject *object)
 		thread_data = gv_stream->priv->thread_data;
 
 		thread_data->cancel = TRUE;
-		g_thread_join (gv_stream->priv->thread);
+		// FIXME: g_thread_join (gv_stream->priv->thread);
 
 		g_object_unref (thread_data->device_address);
 
